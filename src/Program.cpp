@@ -58,10 +58,6 @@ void Program::Update() {
         for (Projectile& p : Projectile::projectiles) { 
             p.update(); 
 
-            // p.id checks if projectile is from enemy
-            if (p.ID == 1 && HitBox::Collision(player->hitBox, p.getHitBox())){
-                PlayerReset();
-            }
         }
 
         if (lives <= 0 && pauseFrames <= 0) gameOver = true;
@@ -191,4 +187,6 @@ void Program::Reset() {
     count = 0;
     delay = 0;
     lives = 3;
+
+    Program();
 }
