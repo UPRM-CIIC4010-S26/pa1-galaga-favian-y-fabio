@@ -11,7 +11,7 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 
 ## Grading
 
-(STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
+(802-25-2140) (Fabio A. de Jesus Colon) (fabio.dejesus@upr.edu)
 (STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
 
 Any project that doesn't compile will receive a 0.
