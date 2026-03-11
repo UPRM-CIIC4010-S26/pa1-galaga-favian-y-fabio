@@ -9,6 +9,7 @@
 #include "SpEnemy.hpp"
 #include "StEnemy.hpp"
 #include "DyEnemy.hpp"
+
 class Program {
     private:
         Background background = Background();
@@ -19,6 +20,7 @@ class Program {
         int delay = 0;
         int lives = 3;
         int pauseFrames = 0;
+        int score = 0;
 
         bool startup = true;
         bool paused = false;
@@ -26,7 +28,6 @@ class Program {
 
     public:
         Program();
-        
         void Update();
         void Draw();
         void ManageEnemyRespawns();
@@ -36,6 +37,7 @@ class Program {
         void KeyInputs();
         void PlayerReset();
         void Reset();
+        void resetScore();
           
         ~Program() {}
 };
