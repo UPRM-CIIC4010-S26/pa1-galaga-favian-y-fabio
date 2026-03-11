@@ -20,6 +20,8 @@ class SpEnemy : public Enemy {
             this->spawning = newSpawn;
         }
 
+        int getPointValue() { return 200; }
+
         void draw() override;
         void update(std::pair<float, float> pos, HitBox target) override;
         void attack(HitBox target) override;

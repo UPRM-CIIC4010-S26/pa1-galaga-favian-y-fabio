@@ -13,6 +13,8 @@ class DyEnemy : public Enemy {
             this->health = 1; 
         }
 
+        int getPointValue() { return 300; }
+
         void draw() override;
         void update(std::pair<float, float> pos, HitBox target) override;
         void attack(HitBox target) override;

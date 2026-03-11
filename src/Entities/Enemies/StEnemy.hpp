@@ -15,6 +15,8 @@ class StEnemy : public Enemy {
             this->spawning = newSpawn;
         }
 
+        int getPointValue() { return 50; }
+
         void draw() override;
         void update(std::pair<float, float> pos, HitBox target) override;
         void attack(HitBox target) override;
