@@ -78,6 +78,7 @@ void Program::Draw() {
     }
     // score display here:
     DrawText(TextFormat("Score: %i", score), 10, 10, 20, WHITE); // Score display
+    if (score > highScore) highScore = score; // Update high score if current score exceeds it
     
 
 
@@ -136,6 +137,7 @@ void Program::DrawStartup() {
     DrawRectangle(0, 0, (float)GetScreenWidth(), (float)GetScreenHeight(), Color{0, 0, 0, 125});
     DrawText("Galaga", (GetScreenWidth() / 2 - 237), 75, 144, WHITE);
     DrawText("Press Enter", (GetScreenWidth() / 2) - 75, GetScreenHeight() / 2, 24, GRAY);
+    DrawText(TextFormat("High Score: %i", highScore), (GetScreenWidth() / 2) - 85, GetScreenHeight() / 2 + 40, 24, GRAY); // centered high score on startup display
 }
 
 void Program::DrawPauseScreen() {
@@ -148,6 +150,7 @@ void Program::DrawGameOver() {
     DrawRectangle(0, 0, (float)GetScreenWidth(), (float)GetScreenHeight(), Color{0, 0, 0, 125});
     DrawText("Game Over", (GetScreenWidth() / 2) - 380, 50, 144, WHITE);
     DrawText("Press Enter", (GetScreenWidth() / 2) - 75, GetScreenHeight() / 2, 24, GRAY);
+    DrawText(TextFormat("High Score: %i", highScore), (GetScreenWidth() / 2) - 85, GetScreenHeight() / 2 + 40, 24, GRAY); // centered high score on GameOver display
 }
 
 void Program::KeyInputs() {
@@ -192,6 +195,8 @@ void Program::Reset() {
     count = 0;
     delay = 0;
     lives = 3;
+    if (score > highScore ) highScore = score; // Potential high score implementation
+    else score = 0;
 
     Program();
 }
