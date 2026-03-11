@@ -19,6 +19,8 @@ class Enemy {
         std::pair<float, float> position;
         HitBox hitBox;
 
+        int getPointValue();  // To be overriden by each enemy type
+
         inline static float direction = 0.5;
         inline static int directionChange = 100;
         inline static std::vector<std::pair<std::pair<float, float>, Enemy*>> enemies;

@@ -63,6 +63,14 @@ void Program::Update() {
         if (lives <= 0 && pauseFrames <= 0) gameOver = true;
         Projectile::CleanProjectiles();
         Projectile::ProjectileCollision();
+
+
+        for (auto& p : Enemy::enemies) {
+            if (p.second && p.second->health <= 0) {
+                // Awarding points based on enemy type
+                score += p.second-> getPointValue();
+    }
+}
     }
 }
 
