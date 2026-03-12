@@ -10,9 +10,10 @@ class Enemy {
         float angle = 90;
         int cooldown = 60;
         int speed = 3;
+        int frameCooldown = 30;
         bool spawning = false;
         bool frame = false;
-        int frameCooldown = 30;
+        bool destroyed = false;
         
     public:
         int health = 1;
@@ -48,7 +49,7 @@ class Enemy {
         }
 
         static int ManageEnemies(HitBox target) {
-            int uniqueScore;
+            int uniqueScore = 0;
             for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
                 p.first.first += (p.first.first == 0) ? 0 : direction;
                 if (p.second) {
@@ -58,6 +59,7 @@ class Enemy {
                         if (p2.ID != 1 && HitBox::Collision(p.second->hitBox, p2.getHitBox())) {
                             p.second->health--;
                             p2.del = true;
+                            p.second-> destroyed = true;
                         }
                     }
 
@@ -65,8 +67,10 @@ class Enemy {
                         Animation::animations.push_back(
                             Animation(p.second->position.first, p.second->position.second, 155, 0, 33, 33, 30, 30, 4, ImageManager::SpriteSheet)
                         );
-                        uniqueScore = p.second->pointValue; 
-                        p.second = nullptr; 
+                        if (p.second-> destroyed) {
+                            uniqueScore = p.second->pointValue;
+                        }
+                        p.second = nullptr;
                     }
                 }
             }

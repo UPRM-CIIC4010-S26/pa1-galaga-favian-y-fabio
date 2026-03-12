@@ -21,7 +21,9 @@ class Program {
         int lives = 3;
         int pauseFrames = 0;
         int score = 0;
-        int highScore = 0; // Potential implemenation later on
+        int highScore = 0;
+        int bonusLives = 0;
+        int lastLifeScore = 0; 
 
         bool startup = true;
         bool paused = false;
@@ -39,7 +41,7 @@ class Program {
         void PlayerReset();
         void Reset();
         void resetScore();
-        void addScore();
+        void checkBonusLives();
           
         ~Program() {}
 };

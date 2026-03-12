@@ -63,8 +63,11 @@ void Program::Update() {
         if (lives <= 0 && pauseFrames <= 0) gameOver = true;
         Projectile::CleanProjectiles();
         Projectile::ProjectileCollision();
-
-
+    }
+    //Lives bonus system: every 1000 points, player gets an extra life, up to a maximum of 5 lives. POR FIIIIIIIN
+    if (score >= lastLifeScore + 1000) {
+        if (lives < 5) lives++;
+    lastLifeScore += 1000;
     }
 }
 
