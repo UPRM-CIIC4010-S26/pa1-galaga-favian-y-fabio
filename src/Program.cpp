@@ -35,7 +35,7 @@ void Program::Update() {
     pauseFrames = std::max(pauseFrames - 1, 0);
 
     if (!startup && !paused && !gameOver && pauseFrames <= 0) {
-        Enemy::ManageEnemies(player->hitBox);
+        score +=Enemy::ManageEnemies(player->hitBox); // Update score based on enemies destroyed
         StdEnemy::attackReset();
         ManageEnemyRespawns();
         player->update();
@@ -65,12 +65,6 @@ void Program::Update() {
         Projectile::ProjectileCollision();
 
 
-        for (auto& p : Enemy::enemies) {
-            if (p.second && p.second->health <= 0) {
-                // Awarding points based on enemy type
-                score += p.second-> getPointValue();
-    }
-}
     }
 }
 

@@ -16,10 +16,11 @@ class Enemy {
         
     public:
         int health = 1;
+        int pointValue;
+
         std::pair<float, float> position;
         HitBox hitBox;
 
-        int getPointValue();  // To be overriden by each enemy type
 
         inline static float direction = 0.5;
         inline static int directionChange = 100;
@@ -46,7 +47,8 @@ class Enemy {
              }
         }
 
-        static void ManageEnemies(HitBox target) {
+        static int ManageEnemies(HitBox target) {
+            int uniqueScore;
             for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
                 p.first.first += (p.first.first == 0) ? 0 : direction;
                 if (p.second) {
@@ -59,11 +61,12 @@ class Enemy {
                         }
                     }
 
-                    if (p.second->health <= 0) {
+                    if (p.second->health <= 0) { //Checking if enemy is destroyed to update score form here
                         Animation::animations.push_back(
                             Animation(p.second->position.first, p.second->position.second, 155, 0, 33, 33, 30, 30, 4, ImageManager::SpriteSheet)
                         );
-                        p.second = nullptr;
+                        uniqueScore = p.second->pointValue; 
+                        p.second = nullptr; 
                     }
                 }
             }
@@ -81,5 +84,6 @@ class Enemy {
                 directionChange = 0;
                 direction *= -1;
             }
+            return uniqueScore;
         }
 };
