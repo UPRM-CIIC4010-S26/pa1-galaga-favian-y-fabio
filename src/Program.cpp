@@ -100,7 +100,15 @@ void Program::ManageEnemyRespawns() {
 
     respawnCooldown -= 1;
     if (respawnCooldown <= 0) {
-        respawnCooldown = 1080;
+        //updating the cooldown as the score inreases
+        int baseRespawnCooldown = 1080;
+        int minRespawnCooldown = 120;
+        respawnCooldown =  baseRespawnCooldown - (score / 50);
+
+        if (respawnCooldown < minRespawnCooldown) {
+            respawnCooldown = minRespawnCooldown;
+        }
+        
         for (std::pair<std::pair<float, float>, Enemy*>& p : Enemy::enemies) {
             if (!p.second && p.first.second != 150) {
                 int eType = GetRandomValue(1, 3);
