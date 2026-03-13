@@ -63,7 +63,10 @@ void Program::Update() {
             }
         }
 
-        if (lives <= 0 && pauseFrames <= 0) gameOver = true;
+        if (lives <= 0 && pauseFrames <= 0) {
+            gameOver = true;
+            if (SoundManager::MusicLoaded()) PauseMusicStream(SoundManager::bgMusic);
+        }
         Projectile::CleanProjectiles();
         Projectile::ProjectileCollision();
     }
@@ -170,7 +173,13 @@ void Program::DrawGameOver() {
 }
 
 void Program::KeyInputs() {
-    if ((!gameOver && !startup && IsKeyPressed('P')) || (paused && IsKeyPressed(KEY_ENTER))) paused = !paused;
+    if ((!gameOver && !startup && IsKeyPressed('P')) || (paused && IsKeyPressed(KEY_ENTER))) {
+        paused = !paused;
+        if (SoundManager::MusicLoaded()) {
+            if (paused) PauseMusicStream(SoundManager::bgMusic);
+            else        ResumeMusicStream(SoundManager::bgMusic);
+        }
+    }
     if (!paused && !startup && IsKeyPressed('O')) gameOver = !gameOver;
     if (!gameOver && !paused && IsKeyPressed('I')) startup = !startup;
     if (IsKeyPressed('H')) HitBox::drawHitbox = !HitBox::drawHitbox;
@@ -180,6 +189,7 @@ void Program::KeyInputs() {
     if (gameOver && IsKeyPressed(KEY_ENTER)) {
         gameOver = false;
         Reset();
+        if (SoundManager::MusicLoaded()) ResumeMusicStream(SoundManager::bgMusic);
     }
 
     if (startup && IsKeyPressed(KEY_ENTER)) {
