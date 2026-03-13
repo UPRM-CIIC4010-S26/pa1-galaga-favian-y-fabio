@@ -23,3 +23,4 @@ If a partner has no commits in the repositories, they will receive a 0.
 ## Student Notes
 If you have any bonus specs, bonus or any details the TA's should know, you should include it here:
 Bonus - High score feature
+Bonus - Background Music
